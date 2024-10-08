@@ -20,6 +20,5 @@ namespace ConsoleApp1
         {
 
             return Math.Sqrt(Math.Pow(this.x - other.x, 2) + Math.Pow(this.y - other.y, 2));
-        }
     }
 }
