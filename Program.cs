@@ -51,20 +51,36 @@ namespace GenericList
             return true;
         }
 
+        public static Node<int> InsertAtPosition(Node<int> lst, int position, int value)
+        {
+            Node<int> head = lst;
+            int index = 1;
+
+            if (position == 1)
+                return new Node<int>(value, lst);
+
+            while(lst != null)
+            {
+                if (position - 1 == index)
+                {
+                    lst.SetNext(new Node<int>(value, lst.GetNext()));
+                    return head;
+                }
+                lst = lst.GetNext();
+                index++;
+            }
+            //אני מניח שאם לא הכנסתי חוליה אני מחזיר
+            //נאל בשביל שתהיה אינדיקציה למתכנת שלא הצלחנו להכניס
+            return null;
+        }
 
         static void Main(string[] args)
         {
             {
-                int[] arr1 = { 0, 8, 2, -999, 10, 5, -999, 15 }; // מערך חביב (דוגמה חיובית)
-                int[] arr2 = { 0, 8, 3, -999, 11, 5, -999, 16 }; // מערך שאינו חביב (סכום לא תואם)
-                int[] arr3 = { 1, 2, 3, -999, 6 }; // מערך לא תקין (התחלה לא ב-0)
-                int[] arr4 = { 0, 10, 5, -999, 15 }; // מערך לא תקין (אין מספיק איברים)
-
-                // קריאת הפונקציה על כל מערך
-                Console.WriteLine("Is arr1 nice? " + IsNice(arr1)); // אמור להחזיר true
-                Console.WriteLine("Is arr2 nice? " + IsNice(arr2)); // אמור להחזיר false
-                Console.WriteLine("Is arr3 nice? " + IsNice(arr3)); // אמור להחזיר false
-                Console.WriteLine("Is arr4 nice? " + IsNice(arr4)); // אמור להחזיר false
+                Node<int> lstOnMain = new Node<int>(3, new Node<int>(7, new Node<int>(17)));
+                Node<int> headOnMain = InsertAtPosition(lstOnMain, 1, 5);
+                Console.WriteLine(lstOnMain);
+                Console.WriteLine(headOnMain);
             }
 
         }
